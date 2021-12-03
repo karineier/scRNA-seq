@@ -125,6 +125,7 @@ design = merge(design, brain_lipids.2, by="sample_ID")
 ```
 
 ## Creating DGEList 
+DGEList for each cell type, as a list. Each element of the list is a DGEList for each cell type.
 
 ``` {r creating DGEList}
 
@@ -134,7 +135,26 @@ DGEList = lapply(cell_types, function(x) {
   DGEList(expr_matrix_list[[x]])
 })
 
+names(DGEList) = cell_types
+
 ```
 
+## Saving DGEList for Differential Expression Analysis 
+Saving the DGEList as an R object for downstream differential expression analysis
+
+``` {r saving DGEList}
+
+save(DGEList, design, cell_types, file="scRNA-seq_diffExp_0.R")
+
+
+```
+
+
+``` {r exploring DGEList and design matrix}
+
+DGEList$Astro$samples$lib.size
+DGEList[[1]]$samples$lib.size
+
+```
 
 
