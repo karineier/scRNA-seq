@@ -42,6 +42,10 @@ design = design[,-42] # Removing final column that contains a duplicate variable
 
 for (i in cell_types) {
   
+  dir.create(glue::glue("{i}"))
+  dir.create(glue::glue("{i}/QC"))
+  dir.create(glue::glue("{i}/plotData"))
+  
   print(glue::glue("Normalizing {i} cells"))
   
   design.new <- design %>%
@@ -52,6 +56,8 @@ for (i in cell_types) {
   colnames(design.new) = gsub("\\:", "_", colnames(design.new))
   colnames(design.new) = gsub("\\;", "", colnames(design.new))
   colnames(design.new) = gsub("\\/", "_", colnames(design.new))
+  colnames(design.new) = gsub("-", "_", colnames(design.new))
+  colnames(design.new) = gsub("\\.", "", colnames(design.new))
   
   samples.idx <- pmatch(design.new$cell_ID, rownames(DGEList[[i]]$samples))
   design.new <- design.new[order(samples.idx),]

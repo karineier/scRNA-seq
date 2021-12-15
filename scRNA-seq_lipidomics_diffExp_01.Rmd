@@ -2,7 +2,9 @@
 title: "scRNA-seq_lipidomics_integration_01"
 author: "Kari Neier"
 date: "11/15/2021"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -34,13 +36,13 @@ register(param)
 
 ``` {r loading data}
 
-load("scRNA-seq_diffExp_0.R")
+load("scRNA-seq_diffExp_0.RData")
 
 ```
 
 ## Quality Control and Filtering
 
-Note: Need to explore additional filtering methods
+Currently filtering out genes if they are not expressed in at least 50% of the cells with at least one read. This results in filtering out the vast majority of genes. 
 
 ### log-CPM density plots
 
@@ -100,6 +102,13 @@ for(i in cell_types) {
 
 ```
 
+## Sample normalization, Differential Expression analysis, and Pathway analysis
+
+Normalizing samples with limma voom with dream weights using the variancePartition package. This allows us to model mouse ID as a random effect. 
+
+Differential expression analysis is carried out for each of the top differentially abundant brain lipids in mutant vs. wild-type (p<0.05). The resulting differential expressed genes (DEGs) represent genes whose expression is significantly associated with that particular brain lipid in a particular cell type. Thus, you will have a list of DEGs for each lipid and for each cell type. 
+
+Pathway analysis is performed using enrichR and then slimming similar GO terms with DMRichR.
 
 
 
