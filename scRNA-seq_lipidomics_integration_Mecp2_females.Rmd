@@ -152,7 +152,11 @@ Saving the DGEList as an R object for downstream differential expression analysi
 
 ``` {r saving DGEList}
 
+<<<<<<< HEAD
 save(DGEList, design, cell_types, file="Females/scRNA-seq_diffExp_0.RData")
+=======
+save(DGEList, design, cell_types, file="Females/scRNA-seq_diffExp_0.R")
+>>>>>>> 66e462543cfa3cc4feb6dcaf1f43cbf68477fd9f
 
 
 ```

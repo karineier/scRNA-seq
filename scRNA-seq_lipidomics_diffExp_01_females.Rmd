@@ -33,7 +33,11 @@ register(param)
 
 ``` {r loading data}
 
+<<<<<<< HEAD
 load("scRNA-seq_diffExp_0.RData")
+=======
+load("scRNA-seq_diffExp_0.R")
+>>>>>>> 66e462543cfa3cc4feb6dcaf1f43cbf68477fd9f
 
 ```
 
